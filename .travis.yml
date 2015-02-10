@@ -1,0 +1,7 @@
+language: php
+
+#
+# Important to note, this is the version of PHP used to run this Travis CI build environment
+#
+php:
+  - 5.5
