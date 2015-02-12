@@ -1,9 +1,33 @@
 language: php
 
 #
-# Important to note, this is the version of PHP used to run this Travis CI build environment
+# Important to note, this is the version of PHP used to run this build, not the
+# one used to run your Drupal installation. Ensure compatibility with the Drush
+# and Terminus versions you're using for this build.
 #
 php:
   - 5.5
 
-#  Testing push with this useless line
+#
+# Travis/Pantheon integration requires an RSA key that at least has read access
+# to your GitHub repo and write access to Pantheon's git repo. Create a user on
+# both systems with the most restricted access, given the aforementioned
+# constraints. Then, for the given user, generate and load a public key to both
+# GitHub/Pantheon. Follow instructions from Travis-CI on using this new key.
+#
+# Keep the Pantheon account e-mail address and password handy, you'll need it
+# below in env.global.
+#
+# http://docs.travis-ci.com/user/travis-pro/
+# https://help.github.com/articles/generating-ssh-keys
+#
+#source_key: INSERT_KEY_HERE
+
+script:
+  #
+  # This is where you run your tests, be they SimpleTest, Casper, Behat,
+  # or otherwise. Here's a SimpleTest example. I've found that drush
+  # likes to exit with odd codes if you run multiple classes at once.
+  # You may have to run one class at a time.
+  - echo 'Hello World!'
+#  - $BASEDIR/sites/default/tests/bin/behat
