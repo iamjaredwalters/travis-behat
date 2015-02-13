@@ -66,23 +66,11 @@ env:
     # You can use $PHOST as a reference to the resulting multidev hostname.
     - PHOST="https://$PSITE-$PNAME.pantheon.io"
 
-# before_install:
-    # Place a passphrase-free ssh key so that you can clone and push to your
-    # Pantheon git repository.
-    #
-    # Use the travis encrypt-file command to generate your own.
-    #
-    # See: http://docs.travis-ci.com/user/encrypting-files/
-    #
-    # - openssl aes-256-cbc -K $encrypted_889dd67b213a_key -iv $encrypted_889dd67b213a_iv -in travis-ci-key.enc -out travis-ci-key -d
-    # - openssl aes-256-cbc -K $encrypted_dfede703c127_key -iv $encrypted_dfede703c127_iv -in travis-ci-key -out ~/.ssh/travis-ci-key -d
-    # - chmod 0600 travis-ci-key.pub
-
 install:
   - export BASEDIR=${PWD}
   # Dynamic hosts through Pantheon mean constantly checking interactively
   # that we mean to connect to an unknown host. We ignore those here.
-  - echo "StrictHostKeyChecking no" > ~/.ssh/config
+  # - echo "StrictHostKeyChecking no" > ~/.ssh/config
 
   # Install WP-CLI
   - composer global require wp-cli/wp-cli:dev-master
