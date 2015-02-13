@@ -21,7 +21,7 @@ php:
 # http://docs.travis-ci.com/user/travis-pro/
 # https://help.github.com/articles/generating-ssh-keys
 #
-#source_key: INSERT_KEY_HERE
+# source_key: INSERT_KEY_HERE
 
 env:
   global:
