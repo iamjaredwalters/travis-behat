@@ -66,7 +66,7 @@ env:
     # You can use $PHOST as a reference to the resulting multidev hostname.
     - PHOST="https://$PSITE-$PNAME.pantheon.io"
 
-before_install:
+# before_install:
     # Place a passphrase-free ssh key so that you can clone and push to your
     # Pantheon git repository.
     #
