@@ -46,7 +46,7 @@ env:
     # See: http://docs.travis-ci.com/user/build-configuration/#Secure-environment-variables
     # See also: http://blog.travis-ci.com/2013-01-14-new-client/
     #
-    - secure: "fRO4wGHyy6noNoiI1Uz/q3lkoYBePnJhwcQBMqS6mFKqLjYjbQ6kti3246CNO3lB8PLKq0st9sG+MWVZss1udyvjLza0175xRcyKEUqwadzTzZ5/ChztLSCDMruaHNaQuj+zYF6hp3I1HdBt6hf70EWwnc1mVRjTtyh8DvjB84A="
+    - secure: AcajJU4oXTFFNdhWyuoGdjXy4x6Mvw0uMURFiZOpfVElum9hW3qGQncAhEfES7aL69mY4LlCip5DDsvJbJD7IT9w53CW7TX/fwqiDJr0Y989rD/mmUiucV8RXD1AZZoE6u3r8pm0XWwP9DjrGzJlaOPmzW3pq2nkFd46W3dTPE8=
 
     #
     # PPASS environment variable: represents the Pantheon account password for
@@ -55,7 +55,7 @@ env:
     # travis encrypt PPASS='my_account_password' --add env.global
     #
     #
-    - secure: "L1hDyuPFwCGz+besa7qlf9jgPXub59nBDbLlWTwfOUmmjiPQqv3JUvXBv1d+Qyoh6OmEPJuWDRKk6GoZOPD2H1KMhIe7yOKY8ZXfvf+ZflAgmFASYA7zs0shPJHjpVh5LRFujprn6Wvx3Yi7l8yvLB9Ysp1Wzd+dFLBDnjwkmlU="
+    - secure: lN5524NItY7YGW26ml7GSv0b/byNUgvXPjrVYWQ6acgNedu6kC5YO3dXmpLGw9MmGK2mjEmZ3KS2VNEH/uPZbAPQ2RzZaIbpaErC6QwOF5b3pS5E5prmJh4M2qzHaf4jzmjQnPRqcIP1DvuGoxRtPqcsrxeS9vx0AhJgqVVPU4w=
 
     # Generate a random branch / multidev name, prefixed with "ci" followed
     # by the Travis build number. Note, due to Pantheon multidev environment
@@ -66,17 +66,17 @@ env:
     # You can use $PHOST as a reference to the resulting multidev hostname.
     - PHOST="https://$PSITE-$PNAME.pantheon.io"
 
-# before_install:
-#     # Place a passphrase-free ssh key so that you can clone and push to your
-#     # Pantheon git repository.
-#     #
-#     # Use the travis encrypt-file command to generate your own.
-#     #
-#     # See: http://docs.travis-ci.com/user/encrypting-files/
-#     #
-#     - openssl aes-256-cbc -K $encrypted_889dd67b213a_key -iv $encrypted_889dd67b213a_iv -in travis-ci-key.enc -out travis-ci-key -d
-#     # - openssl aes-256-cbc -K $encrypted_dfede703c127_key -iv $encrypted_dfede703c127_iv -in travis-ci-key -out ~/.ssh/travis-ci-key -d
-#     # - chmod 0600 travis-ci-key.pub
+before_install:
+    # Place a passphrase-free ssh key so that you can clone and push to your
+    # Pantheon git repository.
+    #
+    # Use the travis encrypt-file command to generate your own.
+    #
+    # See: http://docs.travis-ci.com/user/encrypting-files/
+    #
+    # - openssl aes-256-cbc -K $encrypted_889dd67b213a_key -iv $encrypted_889dd67b213a_iv -in travis-ci-key.enc -out travis-ci-key -d
+    # - openssl aes-256-cbc -K $encrypted_dfede703c127_key -iv $encrypted_dfede703c127_iv -in travis-ci-key -out ~/.ssh/travis-ci-key -d
+    # - chmod 0600 travis-ci-key.pub
 
 # # install:
 # #     - bash scripts/install.sh
