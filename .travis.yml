@@ -67,20 +67,20 @@ env:
     # You can use $PHOST as a reference to the resulting multidev hostname.
     - PHOST="https://$PSITE-$PNAME.pantheon.io"
 
-# before_install:
-#     # Place a passphrase-free ssh key so that you can clone and push to your
-#     # Pantheon git repository.
-#     #
-#     # Use the travis encrypt-file command to generate your own.
-#     #
-#     # See: http://docs.travis-ci.com/user/encrypting-files/
-#     #
-#     - openssl aes-256-cbc -k "$PPASSS" -in travis-ci-key.enc -out ~/.ssh/id_rsa -d
-#     # - openssl aes-256-cbc -K $encrypted_dfede703c127_key -iv $encrypted_dfede703c127_iv -in travis-ci-key -out ~/.ssh/travis-ci-key -d
-#     - chmod 0600 ~/travis-ci-key
+before_install:
+    # Place a passphrase-free ssh key so that you can clone and push to your
+    # Pantheon git repository.
+    #
+    # Use the travis encrypt-file command to generate your own.
+    #
+    # See: http://docs.travis-ci.com/user/encrypting-files/
+    #
+    - openssl aes-256-cbc -k "$PPASSS" -in travis-ci-key.pub.enc -out ~/.ssh/id_rsa -d
+    # - openssl aes-256-cbc -K $encrypted_dfede703c127_key -iv $encrypted_dfede703c127_iv -in travis-ci-key -out ~/.ssh/travis-ci-key -d
+    - chmod 0600 ~/.ssh/id_rsa
 
-# # install:
-# #     - bash scripts/install.sh
+# install:
+#     - bash scripts/install.sh
 
 install:
   - export BASEDIR=${PWD}
@@ -158,10 +158,10 @@ script:
   - echo 'Hello World!'
   # - $BASEDIR/sites/default/tests/bin/behat
 
-# after_script:
-#   # Destroy the Pantheon environment
-#   - drush psite-edelete $PUUID $PSITE -y
+after_script:
+  # Destroy the Pantheon environment
+  - drush psite-edelete $PUUID $PSITE -y
 
-#   # Delete the git branch we created.
-#   - cd $TRAVIS_BUILD_DIR; git push pantheon :$PSITE
+  # Delete the git branch we created.
+  - cd $TRAVIS_BUILD_DIR; git push pantheon :$PSITE
 
