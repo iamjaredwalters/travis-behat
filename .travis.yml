@@ -23,6 +23,78 @@ php:
 #
 #source_key: INSERT_KEY_HERE
 
+env:
+  global:
+    # Your Pantheon site's UUID (e.g. from your dashboard URL)
+    - PUUID='734faee8-6c58-4395-924e-d9facf4468ef'
+
+    # Your Pantheon site's name.
+    - PNAME='travis-behat-demo'
+
+    # The Pantheon environment name from which Multidev DB/files will be pulled.
+    # Probably one of: dev, test, live.
+    - PSOURCE='dev'
+
+    #
+    # PEMAIL environment variable: represents the Pantheon account e-mail with
+    # access to this site. Used to authenticate to Pantheon via Terminus. You
+    # must cd to your project root and run:
+    #
+    # travis encrypt PEMAIL='test@example.com' --add env.global
+    #
+    # Which will eventually look something like the key below.
+    # See: http://docs.travis-ci.com/user/build-configuration/#Secure-environment-variables
+    # See also: http://blog.travis-ci.com/2013-01-14-new-client/
+    #
+    #
+    - secure: "fRO4wGHyy6noNoiI1Uz/q3lkoYBePnJhwcQBMqS6mFKqLjYjbQ6kti3246CNO3lB8PLKq0st9sG+MWVZss1udyvjLza0175xRcyKEUqwadzTzZ5/ChztLSCDMruaHNaQuj+zYF6hp3I1HdBt6hf70EWwnc1mVRjTtyh8DvjB84A="
+
+    #
+    # PPASS environment variable: represents the Pantheon account password for
+    # the above encrypted e-mail address. Run:
+    #
+    # travis encrypt PPASS='my_account_password' --add env.global
+    #
+    #
+    - secure: "L1hDyuPFwCGz+besa7qlf9jgPXub59nBDbLlWTwfOUmmjiPQqv3JUvXBv1d+Qyoh6OmEPJuWDRKk6GoZOPD2H1KMhIe7yOKY8ZXfvf+ZflAgmFASYA7zs0shPJHjpVh5LRFujprn6Wvx3Yi7l8yvLB9Ysp1Wzd+dFLBDnjwkmlU="
+
+    # Generate a random branch / multidev name, prefixed with "ci" followed
+    # by the Travis build number. Note, due to Pantheon multidev environment
+    # name limits, builds will start failing at #100000.
+    - PSITE=$(cat /dev/urandom | tr -cd 'a-z0-9' | head -c 4)
+    - PSITE="ci$TRAVIS_BUILD_NUMBER-$PSITE"
+
+    # You can use $PHOST as a reference to the resulting multidev hostname.
+    - PHOST="https://$PSITE-$PNAME.pantheon.io"
+
+install:
+  - export BASEDIR=${PWD}
+  # Dynamic hosts through Pantheon mean constantly checking interactively
+  # that we mean to connect to an unknown host. We ignore those here.
+  - echo "StrictHostKeyChecking no" > ~/.ssh/config
+
+  # Install WP-CLI
+  - composer global require wp-cli/wp-cli:dev-master
+  - export PATH="$HOME/.composer/vendor/bin:$PATH"
+
+  # Install Drush.
+  # - composer global require drush/drush:6.2.0
+  # - export PATH="$HOME/.composer/vendor/bin:$PATH"
+
+  # Install Terminus.
+  - git clone https://github.com/pantheon-systems/terminus.git $HOME/.drush/terminus
+  - cd $HOME/.drush/terminus
+  - composer update --no-dev
+  - drush cc drush
+
+  # Install additional test dependencies here (like Casper, Behat, etc).
+   # - cd $BASEDIR/sites/default/tests
+   # - composer install
+  
+   # # Put us back in our BASE DIRECTORY.
+   # - cd $BASEDIR
+
+
 script:
   #
   # This is where you run your tests, be they SimpleTest, Casper, Behat,
@@ -30,4 +102,4 @@ script:
   # likes to exit with odd codes if you run multiple classes at once.
   # You may have to run one class at a time.
   - echo 'Hello World!'
-#  - $BASEDIR/sites/default/tests/bin/behat
+  # - $BASEDIR/sites/default/tests/bin/behat
