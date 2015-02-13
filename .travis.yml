@@ -46,7 +46,7 @@ env:
     # See: http://docs.travis-ci.com/user/build-configuration/#Secure-environment-variables
     # See also: http://blog.travis-ci.com/2013-01-14-new-client/
     #
-    - secure: AcajJU4oXTFFNdhWyuoGdjXy4x6Mvw0uMURFiZOpfVElum9hW3qGQncAhEfES7aL69mY4LlCip5DDsvJbJD7IT9w53CW7TX/fwqiDJr0Y989rD/mmUiucV8RXD1AZZoE6u3r8pm0XWwP9DjrGzJlaOPmzW3pq2nkFd46W3dTPE8=
+    - secure: "AcajJU4oXTFFNdhWyuoGdjXy4x6Mvw0uMURFiZOpfVElum9hW3qGQncAhEfES7aL69mY4LlCip5DDsvJbJD7IT9w53CW7TX/fwqiDJr0Y989rD/mmUiucV8RXD1AZZoE6u3r8pm0XWwP9DjrGzJlaOPmzW3pq2nkFd46W3dTPE8="
 
     #
     # PPASS environment variable: represents the Pantheon account password for
@@ -55,7 +55,7 @@ env:
     # travis encrypt PPASS='my_account_password' --add env.global
     #
     #
-    - secure: lN5524NItY7YGW26ml7GSv0b/byNUgvXPjrVYWQ6acgNedu6kC5YO3dXmpLGw9MmGK2mjEmZ3KS2VNEH/uPZbAPQ2RzZaIbpaErC6QwOF5b3pS5E5prmJh4M2qzHaf4jzmjQnPRqcIP1DvuGoxRtPqcsrxeS9vx0AhJgqVVPU4w=
+    - secure: "lN5524NItY7YGW26ml7GSv0b/byNUgvXPjrVYWQ6acgNedu6kC5YO3dXmpLGw9MmGK2mjEmZ3KS2VNEH/uPZbAPQ2RzZaIbpaErC6QwOF5b3pS5E5prmJh4M2qzHaf4jzmjQnPRqcIP1DvuGoxRtPqcsrxeS9vx0AhJgqVVPU4w="
 
     # Generate a random branch / multidev name, prefixed with "ci" followed
     # by the Travis build number. Note, due to Pantheon multidev environment
