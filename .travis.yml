@@ -46,7 +46,6 @@ env:
     # See: http://docs.travis-ci.com/user/build-configuration/#Secure-environment-variables
     # See also: http://blog.travis-ci.com/2013-01-14-new-client/
     #
-    #
     - secure: "fRO4wGHyy6noNoiI1Uz/q3lkoYBePnJhwcQBMqS6mFKqLjYjbQ6kti3246CNO3lB8PLKq0st9sG+MWVZss1udyvjLza0175xRcyKEUqwadzTzZ5/ChztLSCDMruaHNaQuj+zYF6hp3I1HdBt6hf70EWwnc1mVRjTtyh8DvjB84A="
 
     #
@@ -67,20 +66,20 @@ env:
     # You can use $PHOST as a reference to the resulting multidev hostname.
     - PHOST="https://$PSITE-$PNAME.pantheon.io"
 
-before_install:
-    # Place a passphrase-free ssh key so that you can clone and push to your
-    # Pantheon git repository.
-    #
-    # Use the travis encrypt-file command to generate your own.
-    #
-    # See: http://docs.travis-ci.com/user/encrypting-files/
-    #
-    - openssl aes-256-cbc -K $encrypted_889dd67b213a_key -iv $encrypted_889dd67b213a_iv -in travis-ci-key.enc -out travis-ci-key -d
-    # - openssl aes-256-cbc -K $encrypted_dfede703c127_key -iv $encrypted_dfede703c127_iv -in travis-ci-key -out ~/.ssh/travis-ci-key -d
-    # - chmod 0600 travis-ci-key.pub
+# before_install:
+#     # Place a passphrase-free ssh key so that you can clone and push to your
+#     # Pantheon git repository.
+#     #
+#     # Use the travis encrypt-file command to generate your own.
+#     #
+#     # See: http://docs.travis-ci.com/user/encrypting-files/
+#     #
+#     - openssl aes-256-cbc -K $encrypted_889dd67b213a_key -iv $encrypted_889dd67b213a_iv -in travis-ci-key.enc -out travis-ci-key -d
+#     # - openssl aes-256-cbc -K $encrypted_dfede703c127_key -iv $encrypted_dfede703c127_iv -in travis-ci-key -out ~/.ssh/travis-ci-key -d
+#     # - chmod 0600 travis-ci-key.pub
 
-# install:
-#     - bash scripts/install.sh
+# # install:
+# #     - bash scripts/install.sh
 
 install:
   - export BASEDIR=${PWD}
@@ -105,7 +104,7 @@ install:
   # Install additional test dependencies here (like Casper, Behat, etc).
    # - cd $BASEDIR/sites/default/tests
    # - composer install
-  
+
    # # Put us back in our BASE DIRECTORY.
    # - cd $BASEDIR
 
@@ -134,7 +133,7 @@ before_script:
   # sync. We get around this by clearing all caches before attempting anything.
   # The "|| true" works around issues where Views and Block conflict during
   # cache clears / block rehashes.
-  # - drush @pantheon.$PNAME.$PSITE cc all --strict=0 || true
+  - drush @pantheon.$PNAME.$PSITE cc all --strict=0 || true
 
   # Run all available updates as if deploying. For now, append the
   # --strict=0 option for Drush 6.x compatibility on Pantheon.
