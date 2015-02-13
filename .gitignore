@@ -52,4 +52,5 @@ Thumbs.db
 
 # Travis #
 ##########
+travis-ci-key
 travis-ci-key.pub
